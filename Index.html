@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookOra</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f6efe7; /* Cream background */
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff; /* White card */
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            background: white;
+            border: 2px solid #ddd;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            user-select: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>BookOra</h1>
+
+        <div class="btn" onclick="alert('Upload Feature Coming Soon!')">📤 Upload Notes</div>
+        <div class="btn" onclick="alert('Browse Feature Coming Soon!')">📚 Browse Notes</div>
+        <div class="btn" onclick="alert('Search Feature Coming Soon!')">🔍 Search Notes</div>
+    </div>
+</body>
+</html>
