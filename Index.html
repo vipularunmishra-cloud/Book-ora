@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Techpedia</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Techpedia</h2>
+        <input type="text" id="searchInput" placeholder="Search topic..." />
+
+        <ul id="topicList">
+            <!-- Auto filled by JS -->
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="welcome-card">
+            <h1>Welcome to Techpedia</h1>
+            <p>Select a topic from the left sidebar to begin learning.</p>
+        </div>
+
+        <div id="contentBox" class="content-box hidden">
+            <h2 id="topicTitle"></h2>
+            <p id="topicInfo"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
