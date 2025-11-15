@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Techpedia</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Techpedia — Learn CS</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Techpedia</h2>
-        <input type="text" id="searchInput" placeholder="Search topic..." />
-
-        <ul id="topicList">
-            <!-- Auto filled by JS -->
-        </ul>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h2>Techpedia</h2>
+      <p class="sub">CS Essentials • Laptop UI</p>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div class="welcome-card">
-            <h1>Welcome to Techpedia</h1>
-            <p>Select a topic from the left sidebar to begin learning.</p>
-        </div>
+    <input id="searchInput" class="search-box" placeholder="Search topics..." />
 
-        <div id="contentBox" class="content-box hidden">
-            <h2 id="topicTitle"></h2>
-            <p id="topicInfo"></p>
-        </div>
+    <ul id="topicList" class="topic-list">
+      <!-- populated by script.js -->
+    </ul>
+
+    <div class="sidebar-footer">
+      <button id="toggleSidebar" class="btn small">Collapse</button>
     </div>
+  </aside>
 
-    <script src="script.js"></script>
+  <main class="main-content">
+    <header class="topbar">
+      <div class="title">Techpedia — Computer Science Learning Portal</div>
+      <div class="actions">
+        <button id="darkToggle" class="btn small">Dark</button>
+      </div>
+    </header>
+
+    <section class="content-area">
+      <article class="welcome-card">
+        <h1>Welcome to Techpedia</h1>
+        <p>Choose any topic from the left to load full, structured notes. Search works instantly. Content is optimized for laptop/PC screens with smooth animations and no lag.</p>
+        <p>Tip: Use the search box to quickly find topics. Each topic loads a full explanation below with subsections and examples.</p>
+      </article>
+
+      <article id="topicContent" class="topic-content hidden">
+        <h2 id="topicTitle"></h2>
+        <div id="topicBody" class="topic-body"></div>
+        <div class="topic-actions">
+          <button id="backBtn" class="btn">Back to top</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
