@@ -1,49 +1,72 @@
-<div class="topic-title">Algorithms</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3 — Operators</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="content-box">
+    <h1>Operators in Python</h1>
 
-<div class="section">
-<h2>1. What Are Algorithms?</h2>
-<p>An algorithm is a step-by-step method to solve a problem. Every computer program is built on algorithms, whether simple or complex.</p>
-</div>
+    <p>
+      Operators let you perform computations and manipulate values. Python provides
+      arithmetic, comparison, logical, bitwise, membership, identity, and assignment
+      operators. Knowing operator behavior, precedence, and short-circuiting is crucial
+      for correct logic.
+    </p>
 
-<div class="section">
-<h2>2. Why Algorithms?</h2>
-<ul>
-<li>Improve speed of code</li>
-<li>Reduce time and space complexity</li>
-<li>Used in interviews</li>
-<li>Foundation of machine learning, AI, and data science</li>
-</ul>
-</div>
+    <h2>Arithmetic operators</h2>
+    <ul>
+      <li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> (float division)</li>
+      <li><code>//</code> (floor division), <code>%</code> (modulus), <code>**</code> (power)</li>
+    </ul>
 
-<div class="section">
-<h2>3. Types of Algorithms</h2>
-<ul>
-<li>Sorting algorithms (Bubble, Merge, Quick)</li>
-<li>Searching (Binary Search)</li>
-<li>Greedy Algorithms</li>
-<li>Dynamic Programming</li>
-<li>Graph Algorithms (Dijkstra, BFS, DFS)</li>
-</ul>
-</div>
+    <h2>Comparison & logical</h2>
+    <p>
+      Comparisons: <code>==, !=, &lt;, &gt;, &lt;=, &gt;=</code> return booleans. Logical
+      operators <code>and</code>, <code>or</code>, <code>not</code> combine boolean
+      expressions and use short-circuit evaluation (<code>and</code> stops at first False,
+      <code>or</code> stops at first True).
+    </p>
 
-<div class="section">
-<h2>4. Example — Binary Search</h2>
+    <h2>Membership and identity</h2>
+    <p>
+      <code>in</code> checks membership in sequences/containers. Identity operators
+      <code>is</code> and <code>is not</code> check object identity (same object in
+      memory) — usually avoid for simple value equality.
+    </p>
+
+    <h2>Operator precedence</h2>
+    <p>
+      Precedence follows standard math: exponent &gt; unary &gt; *,/,% &gt; +,- &gt;
+      comparisons &gt; logical. Use parentheses for clarity.
+    </p>
+
+    <h2>Practical examples</h2>
 <pre>
-int binarySearch(int arr[], int n, int x){
-    int low = 0, high = n-1;
-    while(low <= high){
-        int mid = (low + high) / 2;
-        if(arr[mid] == x) return mid;
-        else if(arr[mid] < x) low = mid + 1;
-        else high = mid - 1;
-    }
-    return -1;
-}
-</pre>
-<p>Time Complexity: O(log n)</p>
-</div>
+a = 7
+b = 3
+print(a // b)   # 2
+print(a % b)    # 1
+print(2 ** 3)   # 8
 
-<div class="section">
-<h2>5. Summary</h2>
-<p>Algorithms are the heart of computer science. Good algorithm knowledge turns a normal coder into an efficient problem solver.</p>
-</div>
+# short-circuit
+def expensive():
+    print("called")
+    return True
+
+x = False and expensive()  # expensive() not called
+</pre>
+
+    <h2>Summary</h2>
+    <p>
+      Use operators idiomatically, avoid complex one-line expressions for readability,
+      and prefer explicit parentheses when mixing logical/comparison operators.
+    </p>
+  </div>
+
+  <a href="../index.html" class="back-btn">⬅ Back to topics</a>
+</body>
+</html>
