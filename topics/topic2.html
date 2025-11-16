@@ -1,45 +1,75 @@
-<div class="topic-title">Data Structures</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2 — Variables & Data Types</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="content-box">
+    <h1>Variables & Data Types</h1>
 
-<div class="section">
-<h2>1. Introduction</h2>
-<p>Data Structures are ways of organizing and storing data efficiently so that it can be used effectively. They are the backbone of computer science and are crucial for solving complex problems quickly.</p>
-</div>
+    <p>
+      Variables are names that refer to values in memory. In Python variables are
+      created when first assigned — there's no explicit declaration. Python is
+      dynamically typed, meaning a variable can hold any type and its type can change
+      at runtime.
+    </p>
 
-<div class="section">
-<h2>2. Why Data Structures Matter?</h2>
-<ul>
-<li>Improve program performance</li>
-<li>Reduce time complexity</li>
-<li>Efficient data management</li>
-<li>Used in interviews (FAANG level)</li>
-<li>Used in compilers, OS, networking, and databases</li>
-</ul>
-</div>
+    <h2>Built-in data types</h2>
+    <ul>
+      <li><b>Numbers</b>: int (arbitrary precision), float (double-precision), complex.</li>
+      <li><b>String</b>: immutable sequence of Unicode characters.</li>
+      <li><b>Boolean</b>: True / False.</li>
+      <li><b>Sequence types</b>: list (mutable), tuple (immutable), range.</li>
+      <li><b>Mapping</b>: dict (key → value store).</li>
+      <li><b>Set</b>: unordered collection of unique items.</li>
+      <li><b>None</b>: special null-like singleton used for “no value”.</li>
+    </ul>
 
-<div class="section">
-<h2>3. Types of Data Structures</h2>
-<ul>
-<li><b>Arrays</b> – Continuous memory storage</li>
-<li><b>Linked Lists</b> – Nodes connected using pointers</li>
-<li><b>Stacks</b> – LIFO mechanism</li>
-<li><b>Queues</b> – FIFO mechanism</li>
-<li><b>Trees</b> – Hierarchical data</li>
-<li><b>Graphs</b> – Networks of nodes</li>
-<li><b>Hash Tables</b> – Key-value storage</li>
-</ul>
-</div>
+    <h2>Examples and idioms</h2>
+<pre>
+# variables and types
+x = 10          # int
+pi = 3.14159    # float
+name = "Vipul"  # str
+flags = [True, False]
+user = {"id":1, "name":"Vipul"}
+</pre>
 
-<div class="section">
-<h2>4. Real-Life Examples</h2>
-<ul>
-<li>Contacts App → Tree</li>
-<li>Undo/Redo → Stack</li>
-<li>Customer Line → Queue</li>
-<li>Google Maps → Graph</li>
-</ul>
-</div>
+    <p>
+      Use tuple packing/unpacking for multiple returns:
+    </p>
+<pre>
+def divmod_pair(a, b):
+    return a // b, a % b
 
-<div class="section">
-<h2>5. Summary</h2>
-<p>Mastering Data Structures is essential for becoming an efficient problem solver and a good programmer. They make your code faster, smarter, and optimized.</p>
-</div>
+q, r = divmod_pair(10, 3)
+</pre>
+
+    <h2>Type conversion</h2>
+    <p>
+      Convert explicitly with constructors: <code>int()</code>, <code>float()</code>,
+      <code>str()</code>, <code>list()</code>, <code>dict()</code>. Rely on duck-typing:
+      functions accept objects that implement expected behavior rather than specific types.
+    </p>
+
+    <h2>Best practices</h2>
+    <ul>
+      <li>Name variables clearly (snake_case)</li>
+      <li>Prefer immutable types where possible (tuples) to avoid accidental mutation</li>
+      <li>Use type hints (PEP 484) for larger projects: <code>def add(a: int, b: int) -&gt; int:</code></li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>
+      Understanding Python’s core types is essential. Practice by manipulating lists,
+      dictionaries, and strings; learn common methods (append, pop, split, join) and
+      when to use built-in functions (map, filter, sorted).
+    </p>
+  </div>
+
+  <a href="../index.html" class="back-btn">⬅ Back to topics</a>
+</body>
+</html>
