@@ -1,46 +1,64 @@
-<div class="topic-title">Operating Systems</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>4 — Control Flow</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="content-box">
+    <h1>Control Flow — Conditionals</h1>
 
-<div class="section">
-<h2>1. Introduction</h2>
-<p>An Operating System (OS) is system software that manages computer hardware, software resources, and provides common services for applications. Examples include Windows, Linux, macOS, Android, and iOS.</p>
-</div>
+    <p>
+      Control flow directs the order in which statements execute. The most common control
+      constructs are conditionals (<code>if/elif/else</code>) and loops. Well-structured
+      control flow yields readable, maintainable code.
+    </p>
 
-<div class="section">
-<h2>2. Functions of an OS</h2>
-<ul>
-<li>Process Management</li>
-<li>Memory Management</li>
-<li>File System Management</li>
-<li>Device Management</li>
-<li>Security & Protection</li>
-<li>User Interface</li>
-</ul>
-</div>
+    <h2>If / elif / else</h2>
+<pre>
+if condition:
+    # branch A
+elif other_condition:
+    # branch B
+else:
+    # default
+</pre>
 
-<div class="section">
-<h2>3. Types of Operating Systems</h2>
-<ul>
-<li>Batch OS</li>
-<li>Multi-Tasking OS</li>
-<li>Distributed OS</li>
-<li>Real-Time OS</li>
-<li>Mobile OS</li>
-</ul>
-</div>
+    <p>
+      Use clear boolean expressions and guard clauses to handle error/edge cases early,
+      reducing deep nesting. Avoid complex boolean expressions—break them into named
+      variables for readability.
+    </p>
 
-<div class="section">
-<h2>4. Example — Process States</h2>
-<p>Every process goes through these states:</p>
-<ul>
-<li>New</li>
-<li>Ready</li>
-<li>Running</li>
-<li>Waiting</li>
-<li>Terminated</li>
-</ul>
-</div>
+    <h2>Example pattern — input validation</h2>
+<pre>
+age_str = input("Age: ")
+if not age_str.isdigit():
+    print("Enter a valid number")
+else:
+    age = int(age_str)
+    if age &gt;= 18:
+        print("Adult")
+    else:
+        print("Minor")
+</pre>
 
-<div class="section">
-<h2>5. Summary</h2>
-<p>Operating Systems are the core of every computer system. They manage hardware and ensure smooth functioning of all applications.</p>
-</div>
+    <h2>Exceptions vs conditionals</h2>
+    <p>
+      For operations that may fail (I/O, conversion), prefer exceptions for exceptional
+      cases. Use try/except when the normal flow is the successful case and failures are
+      rare.
+    </p>
+
+    <h2>Summary</h2>
+    <p>
+      Write simple, testable branches. Early returns (guard clauses) and small helper
+      functions reduce complexity and make unit testing easier.
+    </p>
+  </div>
+
+  <a href="../index.html" class="back-btn">⬅ Back to topics</a>
+</body>
+</html>
