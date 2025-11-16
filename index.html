@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Techpedia — Learn CS</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPy - Learn Python Easily</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <aside id="sidebar" class="sidebar">
-    <div class="brand">
-      <h2>Techpedia</h2>
-      <p class="sub">CS Essentials • Laptop UI</p>
+
+<header>
+    <h1>TechPy – Python Learning Hub</h1>
+</header>
+
+<div class="container">
+    <div class="topics-list">
+        <h2>30 Python Topics</h2>
+        <ul>
+            <li><a href="topics/topic1.html">1. Introduction to Python</a></li>
+            <li><a href="topics/topic2.html">2. Variables & Data Types</a></li>
+            <li><a href="topics/topic3.html">3. Input & Output</a></li>
+            <li><a href="topics/topic4.html">4. Operators</a></li>
+            <li><a href="topics/topic5.html">5. Conditional Statements</a></li>
+            <li><a href="topics/topic6.html">6. Loops</a></li>
+            <li><a href="topics/topic7.html">7. Functions</a></li>
+            <li><a href="topics/topic8.html">8. Lists</a></li>
+            <li><a href="topics/topic9.html">9. Tuples</a></li>
+            <li><a href="topics/topic10.html">10. Dictionaries</a></li>
+            <li><a href="topics/topic11.html">11. Sets</a></li>
+            <li><a href="topics/topic12.html">12. Strings</a></li>
+            <li><a href="topics/topic13.html">13. File Handling</a></li>
+            <li><a href="topics/topic14.html">14. Modules</a></li>
+            <li><a href="topics/topic15.html">15. Error Handling</a></li>
+            <li><a href="topics/topic16.html">16. Classes & Objects</a></li>
+            <li><a href="topics/topic17.html">17. Inheritance</a></li>
+            <li><a href="topics/topic18.html">18. Polymorphism</a></li>
+            <li><a href="topics/topic19.html">19. Encapsulation</a></li>
+            <li><a href="topics/topic20.html">20. Abstraction</a></li>
+            <li><a href="topics/topic21.html">21. Python Libraries</a></li>
+            <li><a href="topics/topic22.html">22. NumPy Basics</a></li>
+            <li><a href="topics/topic23.html">23. Pandas Basics</a></li>
+            <li><a href="topics/topic24.html">24. Matplotlib</a></li>
+            <li><a href="topics/topic25.html">25. Virtual Environment</a></li>
+            <li><a href="topics/topic26.html">26. Project Structure</a></li>
+            <li><a href="topics/topic27.html">27. Debugging</a></li>
+            <li><a href="topics/topic28.html">28. API Requests</a></li>
+            <li><a href="topics/topic29.html">29. JSON Handling</a></li>
+            <li><a href="topics/topic30.html">30. Final Python Project</a></li>
+        </ul>
     </div>
+</div>
 
-    <input id="searchInput" class="search-box" placeholder="Search topics..." />
+<script src="script.js"></script>
 
-    <ul id="topicList" class="topic-list">
-      <!-- populated by script.js -->
-    </ul>
-
-    <div class="sidebar-footer">
-      <button id="toggleSidebar" class="btn small">Collapse</button>
-    </div>
-  </aside>
-
-  <main class="main-content">
-    <header class="topbar">
-      <div class="title">Techpedia — Computer Science Learning Portal</div>
-      <div class="actions">
-        <button id="darkToggle" class="btn small">Dark</button>
-      </div>
-    </header>
-
-    <section class="content-area">
-      <article class="welcome-card">
-        <h1>Welcome to Techpedia</h1>
-        <p>Choose any topic from the left to open a full page of structured notes. Use the search box to find topics instantly.</p>
-      </article>
-
-      <article id="topicContent" class="topic-content hidden">
-        <h2 id="topicTitle"></h2>
-        <div id="topicBody" class="topic-body"></div>
-        <div class="topic-actions">
-          <button id="backBtn" class="btn">Back to top</button>
-        </div>
-      </article>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
