@@ -1,65 +1,110 @@
-/* script.js for Techpedia — final version
-   - Contains 30 topics with expanded content
-   - Populates sidebar, search, topic load with animation
-*/
+/* Final script.js - Glassmorphism layout - links to separate pages in /topics/ */
 
-// Topics data: each value is a longer multi-paragraph string.
-// The wording is concise but detailed; you can expand later if you want images/examples.
-const topics = {
-  "Introduction to Programming": `Programming is the process of designing and writing instructions that a computer can execute. At the simplest level, programming is how we tell machines to perform tasks — from simple arithmetic to complex decision-making. It begins with understanding the problem, breaking it into steps (algorithms), then expressing those steps in a programming language. Core concepts include data types, variables, control flow (conditions and loops), functions, and error handling. Learning programming trains logical thinking: you learn to decompose large tasks into smaller, testable parts.\n\nA programming environment consists of the language syntax, tools (editors, compilers or interpreters), and libraries. Beginner-friendly languages like Python emphasize readability and fast development; lower-level languages like C provide control over memory and performance. In practice, a programmer spends time designing algorithms, testing edge cases, debugging, and optimizing. Good programs are modular, maintainable, and documented — the latter is crucial for teamwork and long-term projects.`,
+/* Topic file map — professional filenames (30 topics) */
+const topicFiles = [
+  { title: "Introduction to Programming", file: "1-introduction-to-programming.html" },
+  { title: "What is C Language", file: "2-c-language-basics.html" },
+  { title: "Variables & Data Types", file: "3-variables-and-data-types.html" },
+  { title: "Operators", file: "4-operators.html" },
+  { title: "Conditional Statements", file: "5-conditional-statements.html" },
+  { title: "Loops", file: "6-loops.html" },
+  { title: "Arrays", file: "7-arrays.html" },
+  { title: "Functions", file: "8-functions.html" },
+  { title: "Pointers", file: "9-pointers.html" },
+  { title: "Structures & Unions", file: "10-structures-unions.html" },
+  { title: "CPU (How it works)", file: "11-cpu.html" },
+  { title: "GPU & Graphics Processing", file: "12-gpu.html" },
+  { title: "RAM", file: "13-ram.html" },
+  { title: "ROM", file: "14-rom.html" },
+  { title: "Storage (HDD / SSD)", file: "15-storage.html" },
+  { title: "Motherboard", file: "16-motherboard.html" },
+  { title: "Input & Output Devices", file: "17-io-devices.html" },
+  { title: "Operating System (Basics)", file: "18-os-basics.html" },
+  { title: "Process Management", file: "19-process-management.html" },
+  { title: "Memory Management", file: "20-memory-management.html" },
+  { title: "File Systems", file: "21-filesystems.html" },
+  { title: "System vs Application Software", file: "22-system-vs-app.html" },
+  { title: "What is a Network", file: "23-network-basics.html" },
+  { title: "Internet Architecture", file: "24-internet-architecture.html" },
+  { title: "IP Address, DNS & Routing", file: "25-ip-dns-routing.html" },
+  { title: "Databases (SQL & NoSQL)", file: "26-databases.html" },
+  { title: "Web Technology (HTML-CSS-JS)", file: "27-web-technology.html" },
+  { title: "APIs (How apps communicate)", file: "28-apis.html" },
+  { title: "AI & Machine Learning", file: "29-ai-ml.html" },
+  { title: "Cloud Computing", file: "30-cloud-computing.html" }
+];
 
-  "What is C Language": `C is a procedural programming language developed in the early 1970s by Dennis Ritchie at Bell Labs. It was created to implement the Unix operating system and quickly became popular due to its efficiency, portability, and close relation to hardware concepts. C provides low-level memory access via pointers, manual memory management, and a small runtime. This makes C ideal for system programming, embedded systems, and performance-critical applications.\n\nKey features of C include a concise syntax, primitive data types, arrays, structs, functions, and the preprocessor. Mastery of C teaches you fundamentals that carry to other languages: how memory works, how data is represented, and how compilers turn code into machine instructions. However, C demands careful programming because incorrect memory handling can cause bugs and vulnerabilities; practices like careful pointer use and testing are essential.`,
+const topicListEl = document.getElementById('topicList');
+const searchInput = document.getElementById('searchInput');
+const toggleBtn = document.getElementById('toggleSidebar');
+const darkBtn = document.getElementById('darkToggle');
 
-  "Variables & Data Types": `Variables are named storage locations used to hold values that a program manipulates. Each variable has a data type that defines the kind of data it can hold (integers, floating point numbers, characters, booleans, etc.). Strongly-typed languages enforce types strictly (e.g., Java), while dynamically-typed languages (e.g., Python) infer types at runtime. Understanding types helps you choose correct storage, avoid overflow, and write clearer code.\n\nCommon composite types include arrays (sequence of elements), structs/objects (grouped data fields), and collections (lists, sets, maps). Modern languages also provide abstract data types (ADTs) like queues and stacks. When designing software, consider which types best represent the problem domain and how to convert between types safely (casting, serialization). Proper naming and initialization of variables reduces bugs and improves readability.`,
+/* populate sidebar with anchor links to pages in /topics/ */
+topicFiles.forEach(item => {
+  const li = document.createElement('li');
+  li.textContent = item.title;
+  li.className = 'topic-item';
+  li.tabIndex = 0;
+  // open separate page in same tab:
+  li.addEventListener('click', () => {
+    window.location.href = `topics/${item.file}`;
+  });
+  li.addEventListener('keypress', (e) => { if(e.key === 'Enter') window.location.href = `topics/${item.file}`; });
+  topicListEl.appendChild(li);
+});
 
-  "Operators": `Operators are symbols or keywords that perform operations on operands (variables, literals). Basic categories include arithmetic (+, -, *, /, %), comparison (==, !=, <, >), logical (&&, ||, !), bitwise (&, |, ^, ~), and assignment operators (=, +=, -=). Operator precedence determines the order of evaluation; parentheses can override precedence to make code explicit.\n\nBeyond primitives, many languages allow operator overloading to define custom behavior for operators on user-defined types. Understanding operators thoroughly is important for writing correct expressions and avoiding subtle bugs, especially with integer division, floating point rounding, and short-circuit logic in conditionals.`,
+/* search filter */
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  const items = topicListEl.querySelectorAll('li');
+  items.forEach(li => {
+    const show = li.textContent.toLowerCase().includes(q);
+    li.style.display = show ? '' : 'none';
+  });
+});
 
-  "Conditional Statements": `Conditionals allow programs to make decisions. The common forms are if, else if, else, and switch/case in many languages. They evaluate boolean expressions and execute specific blocks accordingly. Effective conditionals are concise, avoid deeply nested branches, and use clear boolean expressions. Guard clauses and early returns simplify complex logic.\n\nDesigning conditions also involves thinking about edge cases and exhaustive coverage. For example, handling null or missing values prevents runtime errors. In user interfaces and input validation, layered checks (format, range, business rules) provide robust validation. Test conditionals with positive, negative, and boundary inputs to ensure correctness.`,
+/* sidebar collapse */
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', () => {
+    const sb = document.getElementById('sidebar');
+    if (sb.style.transform === 'translateX(-260px)') {
+      sb.style.transform = '';
+      toggleBtn.textContent = 'Collapse';
+    } else {
+      sb.style.transform = 'translateX(-260px)';
+      toggleBtn.textContent = 'Expand';
+    }
+  });
+}
 
-  "Loops": `Loops repeat code while a condition holds or for a fixed number of iterations. Common loop constructs are for, while, and do-while. Iterating over collections is a primary use case. Modern languages also provide higher-order iteration constructs (map, filter, reduce) that express intent and often reduce bugs compared to manual loops.\n\nKey considerations with loops are correctness of the termination condition and performance. Infinite loops occur when the exit condition is never met. When processing large datasets, consider algorithmic complexity: nested loops can produce quadratic time, which may be unsuitable for large n. Loop invariants and careful index management mitigate typical loop errors.`,
+/* dark toggle (soft: add .dark to html) */
+if (darkBtn) {
+  darkBtn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    darkBtn.textContent = isDark ? 'Light' : 'Dark';
+    // small style tweak for dark: set CSS variables via class
+    if(isDark){
+      document.documentElement.style.setProperty('--bg','#0b1220');
+      document.documentElement.style.setProperty('--card','#0f1724');
+      document.documentElement.style.setProperty('--muted','#9CA3AF');
+      document.documentElement.style.setProperty('--accent','#60A5FA');
+      document.documentElement.style.setProperty('--border','#111827');
+    } else {
+      document.documentElement.style.setProperty('--bg','#F5F7FA');
+      document.documentElement.style.setProperty('--card','#FFFFFF');
+      document.documentElement.style.setProperty('--muted','#6B7280');
+      document.documentElement.style.setProperty('--accent','#2563EB');
+      document.documentElement.style.setProperty('--border','#E5E7EB');
+    }
+  });
+}
 
-  "Arrays": `An array is a contiguous collection of elements of the same type, indexed by integer positions. Arrays enable fast access by index but have a fixed size (in low-level languages). Many languages provide dynamic array-like structures (lists, vectors) that grow as required. Arrays are fundamental for implementing data structures (stacks, queues) and performing efficient operations.\n\nUnderstanding memory layout of arrays is important for performance: traversing arrays sequentially favors CPU cache and reduces latency. Multidimensional arrays represent matrices and are used heavily in graphics, scientific computing, and machine learning. Operations like slicing, searching, and sorting are core array tasks.`,
-
-  "Functions": `Functions (or methods) are reusable blocks of code that perform a specific task. They help structure code, reduce repetition, and improve readability. Functions accept parameters and may return values. Key principles include single responsibility, clear parameter lists, and predictable return values. In modern programming, pure functions (no side effects) are valued for testability and reasoning.\n\nAdvanced topics include recursion, higher-order functions (functions that accept/return functions), closures (functions that capture surrounding state), and asynchronous functions. Proper decomposition into functions and unit testing fosters maintainable codebases.`,
-
-  "Pointers": `Pointers are variables that store memory addresses. They enable indirect access to memory, dynamic allocation, and efficient data structures (linked lists, trees). Pointers are powerful but error-prone: dangling pointers, memory leaks, and buffer overflows are classic problems when pointers are misused. Languages like C and C++ expose pointer arithmetic, while modern languages (Java, Python) provide managed references without raw pointer arithmetic.\n\nLearning pointers is crucial for understanding how programs use memory, how parameter passing works at a low level, and how to implement efficient data structures. Safe use includes initializing pointers, freeing allocated memory appropriately, and using smart pointers or garbage collection where available.`,
-
-  "Structures & Unions": `Structures (structs) combine multiple fields into a single type, allowing grouping of related data (e.g., a Point with x and y). They are foundational for modeling complex data. Unions are similar but allow overlapping storage for multiple types, saving memory at the cost of type safety. In higher-level languages, structs map to objects or records with methods and encapsulation.\n\nUsing structures promotes clear data modeling and separation of concerns. Design structures with appropriate types and consider immutability or encapsulation to prevent accidental modification. When integrating with external systems, ensure serialization formats (JSON, binary) preserve the intended structure.`,
-
-  "CPU (How it works)": `The CPU (Central Processing Unit) executes instructions that make up a program. Conceptually, it fetches instructions from memory, decodes them, executes arithmetic/logic operations, and writes results back. Modern CPUs use pipelining, multiple cores, caches (L1, L2, L3), and branch prediction to improve throughput and hide latency.\n\nUnderstanding CPU architecture is key to writing efficient code: memory access patterns, cache locality, and instruction-level parallelism affect performance. Topics include instruction sets (ISA), registers, control unit, ALU, and microarchitecture. For systems programming, knowledge of CPU behavior helps optimize critical code paths and reason about concurrency and synchronization.`,
-
-  "GPU & Graphics Processing": `GPUs (Graphics Processing Units) are specialized processors optimized for parallel workloads, especially graphics rendering. Modern GPUs also accelerate general-purpose compute tasks (GPGPU) using many cores running the same instruction on multiple data items (SIMD). They are crucial for machine learning, simulations, and video processing.\n\nGPUs differ from CPUs in their memory architecture and massive parallelism. Programming models (CUDA, OpenCL) expose parallel kernels. Effective GPU programming requires restructuring algorithms for parallel execution and optimizing memory transfers between host and device. For graphics, GPU pipelines handle vertex processing, rasterization, fragment shading, and texture mapping.`,
-
-  "RAM": `RAM (Random Access Memory) is volatile memory used for storing data the CPU actively uses. RAM provides fast read/write access but loses contents when power is off. Key properties include capacity, latency, and bandwidth. Modern systems use DDR variants; performance can depend on memory frequency and memory channels.\n\nFrom a software viewpoint, RAM is where programs allocate working data structures and stacks. Managing memory usage, avoiding fragmentation, and understanding swapping (when RAM becomes full and the OS moves pages to disk) are practical concerns. Profiling memory usage helps avoid costly out-of-memory situations.`,
-
-  "ROM": `ROM (Read-Only Memory) stores firmware and immutable code that initializes hardware. Unlike RAM, ROM retains contents without power (some variants are EEPROM/flash). In embedded systems, ROM contains bootloaders and low-level drivers necessary for system startup. Understanding ROM is important for hardware-level programming and reliable system initialization.\n\nModern devices use flash memory for firmware updates, balancing persistence and updateability. Boot sequence, firmware verification (secure boot), and safe over-the-air updates are topics tied to ROM usage and device security.`,
-
-  "Storage (HDD / SSD)": `Storage devices persist data across power cycles. Traditional HDDs use spinning magnetic platters and mechanical heads, offering high capacity but lower performance. SSDs use NAND flash memory with much higher speed and lower latency, though they have write endurance considerations. Understanding the tradeoffs helps design systems: SSDs excel at random reads/writes, while HDDs remain cost-effective for archival storage.\n\nFile system design, I/O scheduling, caching, and RAID configurations shape storage performance and reliability. For databases and big data systems, storage characteristics influence indexing strategies, backup planning, and recovery processes.`,
-
-  "Motherboard": `The motherboard is the main printed circuit board that connects CPU, memory, storage, power, and peripherals. It provides sockets, buses (PCIe), chipset controllers, and I/O interfaces. Motherboard design affects upgradeability, supported CPU families, memory types, and expansion capabilities.\n\nFor system builders, choosing a motherboard involves matching the CPU socket, deciding on M.2 vs SATA storage, understanding USB and peripheral support, and ensuring adequate power delivery. Embedded systems may use smaller board form factors (e.g., SBCs) tailored to constrained environments.`,
-
-  "Input & Output Devices": `Input devices (keyboard, mouse, touchscreen, sensors) provide data to systems; output devices (monitors, printers, actuators) present results. Device drivers translate hardware signals into usable system interfaces and manage communication via interrupts, DMA, or polling.\n\nDesigning user-friendly I/O involves latency, precision, and ergonomics concerns. For embedded or robotics systems, dealing with analog inputs, ADCs, PWM outputs, and real-time constraints is common. For accessibility, consider alternative I/O methods and assistive technologies.`,
-
-  "Operating System (Basics)": `An Operating System (OS) is software that manages hardware resources, provides abstractions (processes, files, devices), and coordinates system services. It sits between user applications and hardware, offering system calls and APIs for process creation, file access, and networking. Key OS components include kernel, drivers, file system, and system libraries.\n\nUnderstanding OS concepts such as concurrency, scheduling, memory management, virtual memory, and I/O handling empowers developers to write efficient applications and troubleshoot performance issues. OS design choices influence system responsiveness, security, and multi-user capabilities.`,
-
-  "Process Management": `Processes are instances of running programs; the OS manages process creation, scheduling, inter-process communication (IPC), and termination. Modern systems support threads (lightweight processes) to enable parallelism within an application. Scheduling algorithms (round-robin, priority-based, multi-level queues) determine CPU allocation.\n\nIPC mechanisms — pipes, sockets, shared memory, message queues — let processes cooperate. Synchronization (mutexes, semaphores) prevents race conditions. Understanding context switching costs and thread safety is essential for high-performance concurrent applications.`,
-
-  "Memory Management": `Memory management organizes how processes obtain and release memory. The OS uses virtual memory to provide the illusion of contiguous address space and isolates processes. Mechanisms include paging, segmentation, and swapping. The Memory Management Unit (MMU) translates virtual addresses to physical addresses.\n\nFor developers, memory management matters for performance and correctness. Leaks, fragmentation, and improper sharing can degrade system stability. Languages with automatic memory management (garbage collection) ease developer burden but require understanding GC pauses; manual memory control offers efficiency with higher responsibility.`,
-
-  "File Systems": `File systems provide structured organization, naming, storage, and retrieval of data on persistent devices. Examples include FAT, NTFS, ext4, and XFS. They manage metadata, directories, permissions, and journaling for recovery. File system selection influences performance (small file handling, large file throughput) and reliability.\n\nAdvanced topics include distributed file systems (NFS, HDFS), object stores for cloud architectures, and file system tuning for specific workloads. Proper backups and redundancy strategies protect against data loss.`,
-
-  "System Software vs Application Software": `System software (OS, device drivers, utilities) operates close to hardware and provides foundational services. Application software (apps, web services) runs on top of system software to fulfill user-focused tasks. Distinguishing them clarifies design requirements: system software prioritizes stability and resource management; application software focuses on business logic and user experience.\n\nSoftware engineering practices differ: system-level code demands careful testing, low-level debugging, and performance profiling. Application-level code emphasizes modularity, UX design, and integration with third-party services.`,
-
-  "What is a Network": `A network connects devices to share resources and information. Networks range from local area networks (LANs) to wide area networks (WANs) and the global Internet. Core concepts include nodes, links, topologies (star, mesh), and protocols that define communication rules. Network devices include switches, routers, and access points.\n\nNetworking topics span the OSI and TCP/IP models, routing, addressing, congestion control, and security. Understanding how data is segmented, addressed, routed, and reassembled is fundamental to web services, cloud systems, and distributed applications.`,
-
-  "Internet Architecture": `The Internet is a global system of networks using standardized protocols (TCP/IP). Core components include autonomous systems, routing via BGP, DNS for name resolution, and HTTP/HTTPS for web traffic. The architecture emphasizes robustness, redundancy, and layered protocols.\n\nDesign principles such as end-to-end design and packet-switching shaped the Internet’s growth. Modern concerns include scalability, security (DDoS mitigation, TLS), and content distribution networks (CDNs) that cache data close to users for performance.`,
-
-  "IP Address, DNS & Routing": `IP addresses uniquely identify devices on networks. IPv4 and IPv6 are addressing schemes with different capacities. DNS maps human-readable domain names to IP addresses, enabling users to access services without memorizing numeric addresses. Routing uses tables and protocols to forward packets across networks.\n\nRouting protocols (OSPF, BGP) handle path selection; network address translation (NAT) allows private networks to share public IPs. Understanding addressing, subnets, and DNS resolution helps debug connectivity issues and design scalable networked systems.`,
-
-  "Databases (SQL & NoSQL)": `Databases store and organize data for retrieval and manipulation. Relational databases (SQL) use structured schemas, ACID transactions, and SQL for queries. NoSQL databases provide flexible schemas, horizontal scaling, and varied data models (document, key-value, column-family, graph) to suit diverse use cases.\n\nChoosing between SQL and NoSQL depends on consistency requirements, query patterns, and scalability needs. Concepts like indexing, normalization, transactions, and replication are central to database design and performance tuning.`,
-
-  "Web Technology (HTML–CSS–JS Basics)": `Web technology builds the user-facing part of the Internet. HTML defines structure, CSS styles content, and JavaScript adds interactivity. Modern web development uses frameworks, build tools, and component-based architectures that improve maintainability and performance.\n\nUnderstanding the browser DOM, event loop, rendering pipeline, and performance optimization (minification, bundling, caching) helps create responsive, accessible, and fast sites. Progressive enhancement and responsive design ensure usability across devices.`,
-
-  "APIs (How apps communicate)": `APIs (Application Programming Interfaces) let applications interact via defined contracts. RESTful APIs use HTTP verbs and resource URIs; newer patterns include GraphQL and gRPC. APIs handle authentication, rate limiting, versioning, and error handling.\n\nDesigning robust APIs includes clear documentation, stable contracts, and thoughtful error responses. API design also considers security (OAuth, tokens), data validation, and backward compatibility for evolving services.`,
-
-  "Artificial Intelligence & Machine Learning": `AI is the broad field focused on building systems that simulate intelligent behavior. Machine Learning (ML) is a subfi
+/* accessibility: allow keyboard navigation focus style */
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    // if sidebar collapsed, expand
+    const sb = document.getElementById('sidebar');
+    if(sb.style.transform === 'translateX(-260px)'){ sb.style.transform = ''; toggleBtn.textContent = 'Collapse'; }
+  }
+});
