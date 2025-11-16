@@ -1,48 +1,65 @@
-<div class="topic-title">C Programming</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>1 — Introduction to Python</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="content-box">
+    <h1>Introduction to Python</h1>
 
-<div class="section">
-<h2>1. Introduction</h2>
-<p>C is one of the most powerful and widely used programming languages in the world. Developed in 1972 by Dennis Ritchie, C forms the foundation of modern programming. Languages like C++, Java, Python, and many others are influenced by C. It is known for its speed, efficiency, and full control over hardware, making it a preferred choice for operating systems, embedded devices, and high-performance applications.</p>
-</div>
+    <p>
+      Python is a high-level, interpreted programming language known for its
+      readability, concise syntax, and large standard library. Created by Guido van
+      Rossum and first released in 1991, Python emphasizes developer productivity and
+      code clarity. It is used everywhere — web development, data science, automation,
+      scripting, DevOps, and education.
+    </p>
 
-<div class="section">
-<h2>2. Why C Is Important?</h2>
-<ul>
-<li>It is the **mother of all languages**.</li>
-<li>Used to build **operating systems (Windows, Linux, macOS)**.</li>
-<li>Used in **embedded systems**, robots, and IoT devices.</li>
-<li>Best for **learning memory management**.</li>
-<li>Fast, portable, and extremely efficient.</li>
-</ul>
-</div>
+    <h2>What makes Python special?</h2>
+    <p>
+      Python has a simple, English-like syntax that makes it accessible to beginners
+      while being powerful for experts. Key features include dynamic typing, automatic
+      memory management (garbage collection), first-class functions, rich data
+      structures (lists, dicts, sets), and a mature ecosystem of libraries (NumPy,
+      pandas, Flask, Django, TensorFlow).
+    </p>
 
-<div class="section">
-<h2>3. Basic Structure of a C Program</h2>
+    <h2>Python execution model</h2>
+    <p>
+      Python code runs in an interpreter. The most common implementation is CPython,
+      which compiles source code to bytecode executed by a virtual machine. There are
+      other implementations (PyPy for speed, Jython for Java integration, IronPython
+      for .NET). For performance-critical parts, developers may use C extensions.
+    </p>
+
+    <h2>Getting started — example</h2>
 <pre>
-#include &lt;stdio.h&gt;
+# Hello world in Python
+def greet(name):
+    return f"Hello, {name}!"
 
-int main() {
-    printf("Hello World!");
-    return 0;
-}
+print(greet("Vipul"))
 </pre>
-<p>This is the skeleton of every C program. The <b>main()</b> function is the entry point.</p>
-</div>
 
-<div class="section">
-<h2>4. Key Concepts in C</h2>
-<ul>
-<li>Variables and Data Types</li>
-<li>Loops and Conditionals</li>
-<li>Arrays & Strings</li>
-<li>Pointers</li>
-<li>Functions</li>
-<li>Structures</li>
-<li>Memory Allocation</li>
-</ul>
-</div>
+    <h2>Where to go from here</h2>
+    <p>
+      Start by learning core syntax (variables, control flow, functions), then
+      practice small projects (to-do app, scraper, data explorer). Explore virtual
+      environments (venv), pip for package management, and read the official docs at
+      python.org.
+    </p>
 
-<div class="section">
-<h2>5. Summary</h2>
-<p>C remains an essential language for anyone interested in software, hardware, or system-level development. Once you master C, learning any other programming language becomes easier.</p>
-</div>
+    <h2>Summary</h2>
+    <p>
+      Python’s balance of simplicity and power makes it a top choice for beginners and
+      professionals. Mastering Python opens many paths — backend development, data
+      engineering, automation, and ML.
+    </p>
+  </div>
+
+  <a href="../index.html" class="back-btn">⬅ Back to topics</a>
+</body>
+</html>
