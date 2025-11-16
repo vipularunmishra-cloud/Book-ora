@@ -1,0 +1,49 @@
+<div class="topic-title">Algorithms</div>
+
+<div class="section">
+<h2>1. What Are Algorithms?</h2>
+<p>An algorithm is a step-by-step method to solve a problem. Every computer program is built on algorithms, whether simple or complex.</p>
+</div>
+
+<div class="section">
+<h2>2. Why Algorithms?</h2>
+<ul>
+<li>Improve speed of code</li>
+<li>Reduce time and space complexity</li>
+<li>Used in interviews</li>
+<li>Foundation of machine learning, AI, and data science</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>3. Types of Algorithms</h2>
+<ul>
+<li>Sorting algorithms (Bubble, Merge, Quick)</li>
+<li>Searching (Binary Search)</li>
+<li>Greedy Algorithms</li>
+<li>Dynamic Programming</li>
+<li>Graph Algorithms (Dijkstra, BFS, DFS)</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>4. Example — Binary Search</h2>
+<pre>
+int binarySearch(int arr[], int n, int x){
+    int low = 0, high = n-1;
+    while(low <= high){
+        int mid = (low + high) / 2;
+        if(arr[mid] == x) return mid;
+        else if(arr[mid] < x) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+</pre>
+<p>Time Complexity: O(log n)</p>
+</div>
+
+<div class="section">
+<h2>5. Summary</h2>
+<p>Algorithms are the heart of computer science. Good algorithm knowledge turns a normal coder into an efficient problem solver.</p>
+</div>
